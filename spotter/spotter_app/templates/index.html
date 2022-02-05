@@ -3,23 +3,33 @@
     <title>TITLE PAGE POG</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
 <div id="clock" message="Clock component generated in HTML."></div>
 
 {% for t in test %}
-    {{t |safe}}
+{{t |safe}}
 {% endfor %}
 
 <div id="like_button_container"></div>
 
 <!-- Load JavaScript libraries -->
-<script src="{% static 'js/libs/react.development.js' %}"></script>
-<script src="{% static 'js/libs/react-dom.development.js' %}"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 <!-- JSX support-->
-<script src="{% static 'js/libs/babel.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+    integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Load React components -->
-<script type="text/babel" src="{% static 'js/components/TestButton.js' %}"></script>
-<script type="text/babel" src="{% static 'js/components/TestEventAndProps.js' %}"></script>
-<script type="text/babel" src="{% static 'js/components/TestRepeats.js' %}"></script>
+<script type="text/babel" src="{% static 'js/TestButton.js' %}"></script>
+<script type="text/babel" src="{% static 'js/TestEventAndProps.js' %}"></script>
+<script type="text/babel" src="{% static 'js/TestRepeats.js' %}"></script>
+
+<!-- Load Bootstrap dependencies -->
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+    integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
