@@ -1,0 +1,25 @@
+<head>
+    {% load static %}
+    <title>TITLE PAGE POG</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div id="clock" message="Clock component generated in HTML."></div>
+
+{% for t in test %}
+    {{t |safe}}
+{% endfor %}
+
+<div id="like_button_container"></div>
+
+<!-- Load JavaScript libraries -->
+<script src="{% static 'js/libs/react.development.js' %}"></script>
+<script src="{% static 'js/libs/react-dom.development.js' %}"></script>
+<!-- JSX support-->
+<script src="{% static 'js/libs/babel.min.js' %}"></script>
+
+<!-- Load React components -->
+<script type="text/babel" src="{% static 'js/components/TestButton.js' %}"></script>
+<script type="text/babel" src="{% static 'js/components/TestEventAndProps.js' %}"></script>
+<script type="text/babel" src="{% static 'js/components/TestRepeats.js' %}"></script>
