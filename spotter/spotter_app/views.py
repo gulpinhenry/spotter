@@ -68,14 +68,12 @@ def edit(request, username):
     if request.method == "POST":
         print("hello")
         user = User.objects.filter(username=username)
-        print(user[0].username)
-        new_name = request.POST["name_input"]
-        user[0].name = new_name
-        new_bio = request.POST["bio_input"]
-        user[0].bio = new_bio
-        user_obj = User.objects.get(username=username)
+        if len(user) <= 0:
+            return redirect("/")
+        user_obj = user[0]
+        user_obj.name = request.POST["name_input"]
+        user_obj.bio = request.POST["bio_input"]
         user_obj.save()
-        print(user[0].name)
         request.session['user_id'] 
         return redirect("/user/" + username)
     return render(request, 'edit.html', context)
