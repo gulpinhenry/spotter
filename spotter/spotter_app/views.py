@@ -24,7 +24,7 @@ def login(request):
             messages.error(request, "Incorrect username or password.")
             return redirect("/login")
         if bcrypt.checkpw(request.POST['password_input'].encode(), user[0].password.encode()):
-            request.session['user_id'] = user.id
+            request.session['user_id'] = user[0].id
             return redirect("/")
         else:
             messages.error(request, "Incorrect username or password.")
@@ -163,3 +163,16 @@ def reply_to_comment(request, group_name, post_id, comment_id):
         return redirect(f"/group/{group_name}")
     return redirect("/")
     
+def create_group(request):
+    if request.method == "POST":
+        group_obj = Group.objects.filter(name=request.POST['name_input'])
+        if len(group_obj) > 0:
+            return redirect('/')
+        user = User.objects.filter(id=request.session['user_id'])
+        if len(user) <= 0:
+            return redirect("/")
+        user = user[0]
+        group_obj = Group.objects.create(name=request.POST['name_input'])
+        group_obj.group_users.add(user)
+        return redirect(f"/group/{request.POST['name_input']}")
+    return render(request, 'new_group.html')
