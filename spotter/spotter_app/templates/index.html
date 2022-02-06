@@ -1,19 +1,25 @@
 <head>
     {% load static %}
-    <title>TITLE PAGE POG</title>
+    <title>Spotter</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
 </head>
 
-<div id="clock" message="Clock component generated in HTML."></div>
+<body>
+    <h1>
+        <div id="clock" message="Clock component generated in HTML."></div>
+    </h1>
 
-{% for t in test %}
-{{t |safe}}
-{% endfor %}
-<div id="like_button_container"></div>
+    <h2>
+        <div class="post" title="Testing post"
+            content="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis."
+            author="somebody" created="1/1/11"></div>
+    </h2>
 
-<!-- Load JavaScript libraries -->
+    <div id="like_button_container"></div>
+</body <!-- Load JavaScript libraries -->
 <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 <!-- JSX support-->

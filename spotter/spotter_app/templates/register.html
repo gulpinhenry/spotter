@@ -1,8 +1,9 @@
+<link rel="stylesheet" type="text/css" href="static/css/styles.css" />
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-    {% endfor %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
 </ul>
 {% endif %}
 
