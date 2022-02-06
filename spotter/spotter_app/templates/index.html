@@ -8,7 +8,17 @@
 </head>
 
 <body>
-    <h1>
+    
+    {% comment %} navbar for login register {% endcomment %}
+    <nav>
+        <h1>Spotter</h1>
+        <a href="/register"><button>Register</button></a>
+        <a href="/login"><button>Sign In</button></a>
+    </nav>
+    {% for i in test %}
+        <h1>{{i}}</h1>
+    {% endfor %}
+    {% comment %} <h1>
         <div id="clock" message="Clock component generated in HTML."></div>
     </h1>
 
@@ -16,21 +26,22 @@
         <div class="post" title="Testing post"
             content="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis."
             author="somebody" created="1/1/11"></div>
-    </h2>
-
-    <div id="like_button_container"></div>
+    </h2> {% endcomment %}
+    {% comment %} <div id = "root"></div>
+    <div id="like_button_container"></div> {% endcomment %}
 </body <!-- Load JavaScript libraries -->
-<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+{% comment %} <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> {% endcomment %}
 <!-- JSX support-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
     integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> {% endcomment %}
 
 <!-- Load React components -->
-<script type="text/babel" src="{% static 'js/TestButton.js' %}"></script>
+{% comment %} <script type="text/babel" src="{% static 'js/Landing.js' %}"></script> {% endcomment %}
+{% comment %} <script type="text/babel" src="{% static 'js/TestButton.js' %}"></script>
 <script type="text/babel" src="{% static 'js/TestEventAndProps.js' %}"></script>
-<script type="text/babel" src="{% static 'js/TestRepeats.js' %}"></script>
+<script type="text/babel" src="{% static 'js/TestRepeats.js' %}"></script> {% endcomment %}
 
 <!-- Load Bootstrap dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"

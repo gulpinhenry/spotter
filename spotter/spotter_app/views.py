@@ -6,10 +6,13 @@ import bcrypt
 
 
 def index(request):
+    # get all posts in db
+    lst = list(User.objects.all())
+    print(lst[0].username)
     test_arr = ['<div class="test" message="# ' +
                 str(i) + ' generated with Django templates!"></div>' for i in range(1, 4)]
     context = {
-        'test': test_arr,
+        'test': User.objects.all(),
     }
     return render(request, 'index.html', context)
 
