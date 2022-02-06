@@ -67,11 +67,12 @@ def group(request, group_name):
     posts = []
     for post in posts_obj:
         post_context = {
-            "post": post,
+            "post": f'<div class="post" title={post.title} content="{post.content}" author="{post.author.name}" created="{post.created}"></div>',
             "comments": [],
         }
         for comment in post.post_comments.all():
-            post_context["comments"].append(comment)
+            post_context["comments"].append(
+                f'<div class="comment" content="{comment.content}" author="{comment.author.name}" created="{comment.created}"></div>')
         posts.append(post_context)
     context = {
         "posts": posts,
