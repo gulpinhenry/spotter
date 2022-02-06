@@ -1,0 +1,52 @@
+h1 {
+    padding:0.35em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:black;
+    text-align:center;
+    transition: all 0.2s;
+}
+h1:hover {
+    color:grey;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+}
+@media all and (max-width:30em){
+    h1{
+        display:block;
+        margin:0.4em auto;
+    }
+    }
+
+body {
+    background:white !important;
+}
+
+.jumbotron {
+    background-size       : contain;
+    padding               : 0;
+    margin                : 0;
+    height                : 100%;
+    min-height            : 900px;
+    vertical-align        : middle;
+    position              : relative;
+    background-attachment : fixed;
+    background-repeat     : no-repeat;
+    background-position   : center center;
+    overflow              : hidden;
+}
+.jumbotron .content {
+    color             : #981f1f;
+    position          : absolute;
+    top               : 50%;
+    left              : 0;
+    right             : 0;
+    height            : 50%;
+    width             : 100%;
+    margin            : 0 auto;
+    padding           : 0 10%;
+    transform         : translateY(-50%);
+    -webkit-transform : translateY(-50%);
+    -moz-transform    : translateY(-50%);
+    }
