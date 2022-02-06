@@ -48,7 +48,7 @@ def register(request):
         user = User.objects.create(
             username=request.POST["username_input"], password=pw_hash)
         request.session['user_id'] = user.id
-    return render(request, 'register.html')
+    return render(request, 'register.html') # i think this should redirect to home page or their profile
 
 
 def user(request, username):

@@ -16,7 +16,20 @@
         <a href="/login"><button>Sign In</button></a>
     </nav>
     {% for i in test %}
-        <h1>{{i}}</h1>
+        <div class="card text-center">
+            <div class="card-header">
+                Group Name
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Content</p>
+                <a href="#" class="btn btn-primary">See Post, change href to post id</a>
+            </div>
+            <div class="card-footer text-muted">
+                time, author
+            </div>
+        </div>
+        {% comment %} <h1>{{i.content idk}}</h1>  {% endcomment %}
     {% endfor %}
     {% comment %} <h1>
         <div id="clock" message="Clock component generated in HTML."></div>
