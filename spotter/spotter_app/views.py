@@ -54,9 +54,29 @@ def user(request, username):
         return redirect("/")
     context = {
         'username': username,
+        'name': user_obj[0].name,
+        'bio': user_obj[0].bio,
+        'groups': user_obj[0].joined_groups.all,
+        'posts': user_obj[0].post_author.all,
     }
     return render(request, 'user.html', context)
 
+def edit(request, username):
+    context = {
+        'username': username,
+    }
+    if request.method == "POST":
+        print("hello")
+        user = User.objects.filter(username=username)
+        if len(user) <= 0:
+            return redirect("/")
+        user_obj = user[0]
+        user_obj.name = request.POST["name_input"]
+        user_obj.bio = request.POST["bio_input"]
+        user_obj.save()
+        request.session['user_id'] 
+        return redirect("/user/" + username)
+    return render(request, 'edit.html', context)
 
 def group(request, group_name):
     group_obj = Group.objects.filter(name=group_name)
