@@ -8,7 +8,8 @@ urlpatterns = [
     path('login', views.login),  # login returning user
     path('register', views.register),  # register new user
     path('user/<str:username>', views.user),  # view user profile
-    path('user/<str:username>/edit', views.edit), 
+    path('user/<str:username>/edit', views.edit), # edit user profile
+    path('group/new', views.create_group),  # create a group
     path('group/<str:group_name>', views.group),  # view a group
     path('group/<str:group_name>/users', views.group),  # view the users in a group
     path('group/<str:group_name>/post', views.post_to_group),  # view the users in a group
