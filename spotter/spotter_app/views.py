@@ -54,9 +54,31 @@ def user(request, username):
         return redirect("/")
     context = {
         'username': username,
+        'name': user_obj[0].name,
+        'bio': user_obj[0].bio,
+        'groups': user_obj[0].joined_groups.all,
+        'posts': user_obj[0].post_author.all,
     }
     return render(request, 'user.html', context)
 
+def edit(request, username):
+    context = {
+        'username': username,
+    }
+    if request.method == "POST":
+        print("hello")
+        user = User.objects.filter(username=username)
+        print(user[0].username)
+        new_name = request.POST["name_input"]
+        user[0].name = new_name
+        new_bio = request.POST["bio_input"]
+        user[0].bio = new_bio
+        user_obj = User.objects.get(username=username)
+        user_obj.save()
+        print(user[0].name)
+        request.session['user_id'] 
+        return redirect("/user/" + username)
+    return render(request, 'edit.html', context)
 
 def group(request, group_name):
     return HTTPResponse("pog")
