@@ -12,7 +12,7 @@ def index(request):
     test_arr = ['<div class="test" message="# ' +
                 str(i) + ' generated with Django templates!"></div>' for i in range(1, 4)]
     context = {
-        'test': User.objects.all(),
+        'posts': Post.objects.all(),
     }
     return render(request, 'index.html', context)
 
@@ -83,6 +83,7 @@ def edit(request, username):
 
 def group(request, group_name):
     group_obj = Group.objects.filter(name=group_name)
+    print(group_obj)
     if len(group_obj) <= 0:
         return redirect("/")
     group_obj = group_obj[0]

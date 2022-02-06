@@ -15,15 +15,16 @@
         <a href="/register"><button>Register</button></a>
         <a href="/login"><button>Sign In</button></a>
     </nav>
-    {% for i in test %}
+    {% for i in posts %}
         <div class="card text-center">
             <div class="card-header">
-                Group Name
+                {{i.group}}
+                {% comment %} This might be an id so we may need to chagne this {% endcomment %}
             </div>
             <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <p class="card-text">Content</p>
-                <a href="#" class="btn btn-primary">See Post, change href to post id</a>
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.content}}</p>
+                <a href="/{{i}}" class="btn btn-primary">See Post</a>
             </div>
             <div class="card-footer text-muted">
                 time, author
