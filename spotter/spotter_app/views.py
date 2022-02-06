@@ -59,4 +59,21 @@ def user(request, username):
 
 
 def group(request, group_name):
-    return HTTPResponse("pog")
+    group_obj = Group.objects.filter(name=group_name)
+    if len(group_obj) <= 0:
+        return redirect("/")
+    group_obj = group_obj[0]
+    posts_obj = group_obj.post_group.all()
+    posts = []
+    for post in posts_obj:
+        post_context = {
+            "post": post,
+            "comments": [],
+        }
+        for comment in post.post_comments.all():
+            post_context["comments"].append(comment)
+        posts.append(post_context)
+    context = {
+        "posts": posts,
+    }
+    return render(request, 'group.html', context)
