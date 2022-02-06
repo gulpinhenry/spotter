@@ -1,0 +1,9 @@
+<div id="create-group">
+    <h1>Create New Group:</h1>
+    <form action="/group/new" method="POST">
+        {% csrf_token %}
+        <label for="name_input">Group Name: </label>
+        <input type="text" name="name_input">
+        <input type="submit" value="OK">
+    </form>
+</div>
