@@ -6,12 +6,42 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
+<div id="create-post">
+    <h1>Create new post:</h1>
+    <form action="/group/{{group_name}}/post" method="POST">
+        {% csrf_token %}
+        <label for="title">Title: </label>
+        <input type="text" name="title_input">
+
+        <label for="content">Content: </label>
+        <input type="text" name="content_input">
+
+        <input type="submit" value="OK">
+    </form>
+</div>
+
 <div class="post" title="Test" content="this is a test post" author="me" created="1/1/11"></div>
 
 {% for post in posts %}
 {{post.post |safe}}
+<div id="create-reply">
+    <form action="/group/{{group_name}}/reply/{{post.id}}" method="POST">
+        {% csrf_token %}
+        <label for="title">Reply to post: </label>
+        <input type="text" name="reply_input">
+        <input type="submit" value="OK">
+    </form>
+</div>
 {% for comment in post.comments %}
-{{comment |safe}}
+{{comment.content |safe}}
+<div id="create-reply">
+    <form action="/group/{{group_name}}/reply/{{post.id}}/{{comment.id}}" method="POST">
+        {% csrf_token %}
+        <label for="title">Reply to comment: </label>
+        <input type="text" name="reply_input">
+        <input type="submit" value="OK">
+    </form>
+</div>
 {% endfor %}
 {% endfor %}
 

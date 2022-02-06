@@ -87,14 +87,75 @@ def group(request, group_name):
     posts = []
     for post in posts_obj:
         post_context = {
+            "id": post.id,
+            "author": post.author,
             "post": f'<div class="post" title={post.title} content="{post.content}" author="{post.author.name}" created="{post.created}"></div>',
             "comments": [],
         }
         for comment in post.post_comments.all():
             post_context["comments"].append(
-                f'<div class="comment" content="{comment.content}" author="{comment.author.name}" created="{comment.created}"></div>')
+                {
+                    "id": comment.id,
+                    "content": f'<div class="comment" content="{comment.content}" author="{comment.author.name}" created="{comment.created}"></div>',
+                })
         posts.append(post_context)
     context = {
         "posts": posts,
+        "group_name": group_obj.name,
     }
     return render(request, 'group.html', context)
+
+def post_to_group(request, group_name):
+    if request.method == "POST":
+        group_obj = Group.objects.filter(name=group_name)
+        if len(group_obj) <= 0:
+            return redirect("/")
+        group_obj = group_obj[0]
+        user = User.objects.filter(id=request.session['user_id'])
+        if len(user) <= 0:
+            return redirect("/")
+        user = user[0]
+        Post.objects.create(title=request.POST["title_input"], content=request.POST["content_input"], author=user, group=group_obj)
+        return redirect(f"/group/{group_name}")
+    return redirect("/")
+
+def reply_to_post(request, group_name, post_id):
+    if request.method == "POST":
+        group_obj = Group.objects.filter(name=group_name)
+        if len(group_obj) <= 0:
+            return redirect("/")
+        group_obj = group_obj[0]
+        user = User.objects.filter(id=request.session['user_id'])
+        if len(user) <= 0:
+            return redirect("/")
+        user = user[0]
+        post_obj = Post.objects.filter(id=post_id)
+        if len(post_obj) <= 0:
+            return redirect("/")
+        post_obj = post_obj[0]
+        Comment.objects.create(content=str(f"@{post_obj.author.name} " + request.POST["reply_input"]), author=user, parent_post=post_obj)
+        return redirect(f"/group/{group_name}")
+    return redirect("/")
+
+def reply_to_comment(request, group_name, post_id, comment_id):
+    if request.method == "POST":
+        group_obj = Group.objects.filter(name=group_name)
+        if len(group_obj) <= 0:
+            return redirect("/")
+        group_obj = group_obj[0]
+        user = User.objects.filter(id=request.session['user_id'])
+        if len(user) <= 0:
+            return redirect("/")
+        user = user[0]
+        post_obj = Post.objects.filter(id=post_id)
+        if len(post_obj) <= 0:
+            return redirect("/")
+        post_obj = post_obj[0]
+        comment_obj = Comment.objects.filter(id=comment_id)
+        if len(comment_obj) <= 0:
+            return redirect("/")
+        comment_obj = comment_obj[0]
+        Comment.objects.create(content=str(f"@{comment_obj.author.name} " + request.POST["reply_input"]), author=user, parent_post=post_obj)
+        return redirect(f"/group/{group_name}")
+    return redirect("/")
+    
