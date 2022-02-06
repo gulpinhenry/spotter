@@ -163,11 +163,3 @@ def reply_to_comment(request, group_name, post_id, comment_id):
         return redirect(f"/group/{group_name}")
     return redirect("/")
     
-def create_group(request):
-    if request.method == "POST":
-        group_obj = Group.objects.filter(name=request.POST['name_input'])
-        if len(group_obj) > 0:
-            return redirect('/')
-        Group.objects.create(name=request.POST['name_input'])
-        return redirect(f"/group/{request.POST['name_input']}")
-    return render(request, 'new_group.html')
