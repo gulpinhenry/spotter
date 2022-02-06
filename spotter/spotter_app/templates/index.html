@@ -11,28 +11,8 @@
 {% for t in test %}
 {{t |safe}}
 {% endfor %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 <div id="like_button_container"></div>
 
-<form action="/register" method="POST">
-  
-    <label for="username">Your username: </label>
-    <input id="username_input" type="text" name="username_input" value="{{ username_input }}">
-   
-    <label for="bio">A little bit about yourself: </label>
-    <input id="bio_input" type="text" name="bio_input" value="{{ bio_input }}">
-
-    <label for="realname">Your name: </label>
-    <input id="realname_input" type="text" name="realname_input" value="{{ realname_input }}">
-   
-    <input type="submit" value="OK">
-</form>
 <!-- Load JavaScript libraries -->
 <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
