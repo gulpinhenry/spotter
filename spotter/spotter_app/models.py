@@ -47,10 +47,11 @@ class Post(models.Model):
     reps = models.IntegerField(default=0)
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     content = models.TextField()
     author = models.ForeignKey(
         User, related_name="comment_author", on_delete=models.CASCADE)
+    parent_post = models.ForeignKey(Post, related_name="post_comments", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
     reps = models.IntegerField(default=0)

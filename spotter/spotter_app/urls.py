@@ -10,4 +10,5 @@ urlpatterns = [
     path('user/<str:username>', views.user),  # view user profile
     path('user/<str:username>/edit', views.edit), 
     path('group/<str:group_name>', views.group),  # view a group
+    path('group/<str:group_name>/users', views.group),  # view the users in a group
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
